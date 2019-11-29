@@ -6,8 +6,16 @@ var month;
 
 const containers = document.querySelectorAll('.container');
 const submitButton = document.querySelector('.submit-button');
+const testContainer = document.getElementById("test_div");
+const finalResultTable = document.getElementById('res_table');
+const fintResultTableWrapper = document.getElementById("test_res");
+const formSectionNames=['one','two','three','four','five'];
+
+const finalResultLineNumber = 1;
 
 const inputName = 'INPUT';
+const defaultSelectValue = 'default';
+
 
 let formCurrentlyFilledSections = 0;
 let formNeedToBeFilledSections = 0;
@@ -40,13 +48,13 @@ function onLoad() {
     // ввод фамилии
     while (!lastname) {
         lastname = this.prompt('Введите фамилию');
-        this.document.getElementById('lastname').value = lastname;
+        lastname && (this.document.getElementById('lastname').value = lastname);
     }
 
     // ввод имени
     while (!firstname) {
         firstname = this.prompt('Введите имя');
-        this.document.getElementById('firstname').value = firstname;
+        firstname && (this.document.getElementById('firstname').value = firstname);
     }
     
     setYearOptions(); 
@@ -98,12 +106,21 @@ function startTest() {
     let selectedYear = document.getElementById("selectYear").value;
     let selectedDay = document.getElementById("selectDay").value;
     let selectedMonth = document.getElementById("selectMonth").value;
-    if ('default' ===  selectedYear || 'default' ===  selectedMonth || 'default' ===  selectedDay) {
+
+    let inValidDateValues = [selectedDay, selectedMonth, selectedYear]
+        .filter(item => item === defaultSelectValue);
+
+
+    if (inValidDateValues.length) {
         alert('Введите корректную дату рождения');
         return;
     }
-    if (confirm(firstname + ` ` + lastname + `, Вы готовы к выполнению теста?`)) {
-        document.getElementById("test_div").hidden=false;
+
+    const questionMessage = ` ${firstname} ${lastname} Вы готовы к выполнению теста?`;
+    const personsReply = confirm(questionMessage);
+    
+    if (personsReply) {
+        testContainer.hidden=false;
         document.getElementById('start_test').hidden=true;
         year = selectedYear;
         month = selectedMonth;
@@ -114,14 +131,20 @@ function startTest() {
 }
 
 function calcResult() {
-    let myform = document.forms.test;
-    let value = +myform.one.value + +myform.two.value + +myform.three.value + +myform.four.value + +myform.five.value;
-    document.getElementById('test_div').hidden=true;
-    var cell=document.getElementById('res_table').rows[1].cells;
-    cell[0].innerHTML = lastname + ' ' + firstname;
-    cell[1].innerHTML = value;
-    cell[2].innerHTML = `${day} ${month} ${year}`;
-    document.getElementById("test_res").hidden=false;
+    const myform = document.forms.test;
+
+    const resultMark = formSectionNames
+        .reduce((accumulator, sectionName) => accumulator + Number(myform[sectionName].value), 0);
+
+    testContainer.hidden=true;
+
+    const cell=finalResultTable.rows[finalResultLineNumber].cells;
+    const finalDomResultLine = [...cell];
+    const finalResultLine = [`${lastname} ${firstname}`, resultMark,  `${day} ${month} ${year}`];
+
+    finalDomResultLine.forEach((resultCell, index) => resultCell.innerHTML = finalResultLine[index])
+
+    fintResultTableWrapper.hidden=false;
     window.scrollTo(0,0);
 }
 
