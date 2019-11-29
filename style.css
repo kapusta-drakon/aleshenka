@@ -1,0 +1,100 @@
+*{
+	margin:0;
+	background-color: rgb(188, 188, 194);
+}
+
+.nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	top: 0;
+	width: 100%;
+}
+
+.nav li {
+	float: left;
+}
+
+.nav li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color: #333;
+}
+
+.nav li a:hover {
+	background-color: #111;
+}
+
+.nav .about {
+	float: right;
+}
+
+.main {
+	flex-wrap: nowrap;
+	padding-top: 10px;
+	padding-left: 300px;
+	padding-right: 300px;
+}
+
+.container h2{
+	text-align: center;
+	padding-bottom: 1%;
+}
+
+
+table {
+	margin: auto;
+	border-collapse: collapse;
+	border:3px solid black;
+	width: 590px;
+	margin-bottom: 3%;
+	
+}
+
+td, th {
+	padding: 3px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+th {
+background-color: rgb(128, 116, 155);
+}
+
+caption {
+	font-size: 25px;
+	padding-bottom: 10px;
+}
+
+
+.img_teach {
+ text-align: center;
+}
+
+.list_teacher ol {
+	padding-left: 350px;
+}
+
+.list_teacher2 ol {
+	padding-left: 400px;
+}
+
+.submit-button {
+	width: 300px;
+	height: 40px;
+	color: white;
+}
+
+.submit-button--disabled {
+	background-color: gray;
+}
+
+.submit-button--active {
+	cursor: pointer;
+	background-color: green;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Тест</title>
+</head>
+<body link="#7fff00" vlink="red" onload="onLoad()">
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="index.html">Главная</a>
+            </li>
+            <li>
+                <a href="university.html">Об университете</a>
+            </li>
+            <li>
+                <a href="schedule.html">Расписание</a>
+            </li>
+            <li>
+                <a href="teachers.html">Преподаватели</a>
+            </li>
+            <li>
+                <a href="site_BSUIR.html">Сайт БГУИРа</a>
+            </li>
+            <li>
+                <a href="test.html" style="background-color: #111;">Тест</a>
+            </li>
+            <li>
+                <a href="contacts.html">Кафедра ИТАС</a>
+            </li>
+            <li class="about">
+                <a href="about.html">О себе</a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="main" style="text-align: center">
+        <div id="start_test">
+            <p><b>Фамилия:</b></p>
+            <input type="text" name="lastname" id="lastname" readonly>
+            <p><b>Имя:</b></p>
+            <input type="text" name="firstname" id="firstname" readonly>
+            <p><b>Выберите год рождения:</b></p>
+            <select id="selectYear" >
+                <option disabled selected value="default">год</option>
+            </select><Br>
+            <p><b>Выберите месяц:</b></p>
+            <select id="selectMonth">
+                <option disabled selected value="default">месяц</option>
+            </select><Br>
+            <p><b>Выберите день:</b></p>
+            <select id="selectDay">
+                <option disabled selected value="default">день</option>
+            </select>
+            <br>
+            <button onclick="startTest()" id="start_test_button" style="margin-top: 1em;">Начать тест</button>
+        </div>
+
+
+        <div id="test_div" style="text-align: left" hidden="true">
+            <H1 style="text-align: center">Тест по теме "Группа 620601"</H1>
+            <form name="test" class="form">
+            <p><b>Кто староста группы?</b><Br>
+                <div class="container">
+                    <input type="radio" name="one" value="0"  onclick="handleClick(this);" >Житкевич<Br>
+                    <input type="radio" name="one" value="0"  onclick="handleClick(this);">Карачун<Br>
+                    <input type="radio" name="one" value="2"  onclick="handleClick(this);">Пархоменко<Br>
+                    <input type="radio" name="one" value="0"  onclick="handleClick(this);" >Струков<Br>
+                    <input type="radio" name="one" value="0"  onclick="handleClick(this);">Шатиленя<Br>
+                </div>
+            </p>
+            <br>
+            <p><b>У кого больше всех пропусков?</b><Br>
+                <div class="container">
+                    <input type="radio" name="two" value="0" >Апанович<Br>
+                    <input type="radio" name="two" value="0" >Живица<Br>
+                    <input type="radio" name="two" value="0" >Петровский<Br>
+                    <input type="radio" name="two" value="0" >Шевердак<Br>
+                    <input type="radio" name="two" value="2" >Юркевич<Br>
+                </div>
+            </p>
+            <br>
+            <p><b>У кого самый высокий средний балл?</b><Br>
+                <div class="container">
+                    <input type="radio" name="three" value="0" >Грибанов<Br>
+                    <input type="radio" name="three" value="0" >Денисик<Br>
+                    <input type="radio" name="three" value="2" >Оберемко<Br>
+                    <input type="radio" name="three" value="0" >Пархоменко<Br>
+                    <input type="radio" name="three" value="0" >Шестаков<Br>
+                </div>
+
+            </p>
+            <br>
+            <p><b>Кто попал в аварию спустя неделю после покупки машины?</b><Br>
+                <div class="container">
+                    <input type="radio" name="four" value="0" >Грибанов<Br>
+                    <input type="radio" name="four" value="0" >Максимчук<Br>
+                    <input type="radio" name="four" value="0" >Новодворский<Br>
+                    <input type="radio" name="four" value="2" >Шевердак<Br>
+                    <input type="radio" name="four" value="0" >Шестаков<Br>
+                </div>
+            </p>
+            <br>
+            <p><b>Кому принадлежит данное высказывание:"Аграрники, медики, педи... Кто
+                там в педе учится?"</b><Br>
+                <div class="container">
+                    <input type="radio" name="five" value="0" >Березин<Br>
+                    <input type="radio" name="five" value="0" >Кобринец<Br>
+                    <input type="radio" name="five" value="2" >Миськевич<Br>
+                    <input type="radio" name="five" value="0" >Пархоменко<Br>
+                    <input type="radio" name="five" value="0" >Шатилова<Br>
+                </div>
+            </p>
+            <br>
+            <div style="text-align: center" >
+                <button 
+                    type="button" 
+                    id="calc" 
+                    class="submit-button submit-button--disabled"
+                    disabled>
+                        Подсчитать результаты
+                    </button>
+            </div>
+            <br>
+            <br>
+            </form>
+        </div>
+
+        <div id="test_res" style="text-align: center" hidden="true">
+            <table id="res_table" bgcolor="#5f9ea0" border="2" style="margin: auto; text-align: center">
+                <tr>
+                    <th width="208">Фамилия, имя</td>
+                    <th width="180">Оценка за тест</td>
+                    <th width="208">Дата рождения</td>
+                </tr>
+                <tr>
+                    <td width="208"></td>
+                    <td width="180"></td>
+                    <td width="208"></td>
+                </tr>
+            </table>
+            <br>
+            <button type="button" onClick="restart();">Пройти тест заново</button>
+        </div>
+    </div>
+        <script async src="test.js"></script>
+</body>
+</html>
